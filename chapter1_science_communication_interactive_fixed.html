@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 1: Unlocking SciComm</title>
+    <style>
+        :root {
+            --bg-color: #fdfbf7;
+            --text-color: #2d3748;
+            --accent-color: #5a67d8;
+            --accent-hover: #434ce8;
+            --accent-light: #ebf4ff;
+            --card-bg: #ffffff;
+            --border-color: #e2e8f0;
+            --vibe-bg: #fffaf0;
+            --vibe-border: #ed8936;
+            --vibe-text: #9c4221;
+            --correct-bg: #e6fffa;
+            --correct-border: #38b2ac;
+        }
+        * { box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.7;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 950px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        h1 {
+            font-size: 2.8rem;
+            color: var(--accent-color);
+            margin-bottom: 10px;
+            line-height: 1.2;
+        }
+        h2 {
+            font-size: 2rem;
+            border-bottom: 3px solid var(--accent-light);
+            padding-bottom: 10px;
+            margin-top: 50px;
+            color: #2b6cb0;
+        }
+        h3 {
+            font-size: 1.5rem;
+            color: #2c5282;
+            margin-top: 35px;
+        }
+        h4 {
+            font-size: 1.2rem;
+            color: #4a5568;
+            margin-top: 25px;
+        }
+        p { margin-bottom: 20px; font-size: 1.05rem; }
+        
+        .vibe-check {
+            background-color: var(--vibe-bg);
+            border-left: 5px solid var(--vibe-border);
+            padding: 20px 25px;
+            border-radius: 0 8px 8px 0;
+            margin: 30px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+        }
+        .vibe-check strong {
+            color: var(--vibe-text);
+            display: block;
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+
+        .objectives-box {
+            background-color: var(--accent-light);
+            border-left: 4px solid var(--accent-color);
+            padding: 25px;
+            border-radius: 0 8px 8px 0;
+            margin: 30px 0;
+        }
+        .objectives-box h3 { margin-top: 0; color: var(--accent-color); }
+        
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 30px 0;
+        }
+        @media(max-width: 768px) {
+            .grid-2 { grid-template-columns: 1fr; }
+        }
+        
+        .info-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+        }
+        .info-card h4 { margin-top: 0; color: #2d3748; display: flex; align-items: center; gap: 10px; }
+
+        ul, ol { margin-bottom: 25px; padding-left: 25px; font-size: 1.05rem; }
+        li { margin-bottom: 12px; }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        th, td { padding: 15px; text-align: left; border-bottom: 1px solid var(--border-color); }
+        th { background-color: var(--accent-color); color: white; font-size: 1.1rem; }
+        
+        .video-card {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            margin-bottom: 20px;
+            border: 1px solid var(--border-color);
+            transition: transform 0.2s;
+        }
+        .video-card:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .video-card a { color: var(--accent-color); text-decoration: none; font-weight: bold; font-size: 1.1rem; }
+        .video-card a:hover { text-decoration: underline; }
+        
+        /* Interactive Assessment Styles */
+        .quiz-section {
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            margin-top: 60px;
+            border-top: 5px solid var(--accent-color);
+        }
+        .question-block {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px dashed var(--border-color);
+        }
+        .question-block:last-child { border-bottom: none; }
+        .question-text { font-weight: 600; margin-bottom: 15px; font-size: 1.1rem; }
+        .options-list { margin-left: 20px; color: #4a5568; margin-bottom: 15px; line-height: 1.8; }
+        
+        .reveal-btn {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+        .reveal-btn:hover { background-color: var(--accent-hover); }
+        
+        .answer-box {
+            display: none;
+            background: var(--correct-bg);
+            border-left: 4px solid var(--correct-border);
+            padding: 15px;
+            margin-top: 15px;
+            font-size: 1rem;
+            border-radius: 0 8px 8px 0;
+            color: #234e52;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* NEW Interactive Sandbox Styles (Explicit DOM manipulation instead of pseudo-elements) */
+        .sandbox-container {
+            border: 2px solid var(--accent-color);
+            border-radius: 10px;
+            padding: 20px;
+            background: #fff;
+            margin: 30px 0;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        
+        .chart-box {
+            width: 100%;
+            height: 300px;
+            position: relative;
+            margin: 20px 0;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: opacity 0.3s ease;
+        }
+        
+        /* State 1: Cluttered */
+        .state-cluttered {
+            background: repeating-linear-gradient(0deg, transparent, transparent 19px, #a0aec0 20px),
+                        repeating-linear-gradient(90deg, transparent, transparent 19px, #a0aec0 20px);
+            background-size: 20px 20px;
+            background-color: #edf2f7;
+            border: 6px solid #fc8181;
+            display: flex; /* Active by default */
+            align-items: flex-end;
+            justify-content: space-around;
+            padding: 20px;
+        }
+        .state-cluttered .bar {
+            width: 15%;
+            border: 3px solid black;
+            box-shadow: 5px 5px 0px rgba(0,0,0,0.5);
+        }
+        .overlay-text-cluttered {
+            position: absolute;
+            top: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255,255,255,0.95);
+            border: 2px solid #e53e3e;
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-weight: bold;
+            color: #c53030;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            width: 85%;
+        }
+
+        /* State 2: Clean */
+        .state-clean {
+            background-color: #ffffff;
+            border-bottom: 2px solid #cbd5e0;
+            border-left: 2px solid #cbd5e0;
+            display: none; /* Hidden by default */
+            align-items: flex-end;
+            justify-content: space-around;
+            padding: 20px 20px 0 20px;
+        }
+        .state-clean .bar {
+            width: 15%;
+            background-color: #e2e8f0;
+            border-radius: 4px 4px 0 0;
+            transition: height 0.5s ease;
+        }
+        .state-clean .bar.highlight {
+            background-color: #ed8936;
+        }
+        .overlay-text-clean {
+            position: absolute;
+            top: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255,255,255,0.9);
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-weight: bold;
+            color: #2b6cb0;
+            width: 85%;
+        }
+
+        .toggle-btn {
+            background-color: #ed8936;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .toggle-btn:hover { filter: brightness(1.1); }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Chapter 1: Unlocking SciComm</h1>
+            <p style="font-size: 1.2rem; color: #718096;">Bridging the Gap from Lab to Feed</p>
+        </header>
+
+        <div class="objectives-box">
+            <h3>🎯 Pedagogical Foundation</h3>
+            <ul>
+                <li><strong>Course Objective:</strong> To equip students with the theoretical frameworks and practical digital skills required to translate complex scientific concepts into accessible, engaging, and accurate public discourse.</li>
+                <li><strong>Intended Learning Outcomes (ILOs):</strong>
+                    <ol>
+                        <li>Differentiate between the Information Deficit Model and the Public Engagement Model.</li>
+                        <li>Apply the "Truth Sandwich" technique to debunk misinformation without triggering the backfire effect.</li>
+                        <li>Evaluate data visualizations for cognitive load, mobile accessibility, and narrative impact.</li>
+                    </ol>
+                </li>
+                <li><strong>Core Competencies:</strong> Digital literacy, empathetic communication, visual analytics, and critical fact-checking.</li>
+            </ul>
+        </div>
+
+        <h2>Module 1.1: What is SciComm? (And Why Your Feed Needs It)</h2>
+        
+        <div class="vibe-check">
+            <strong>⚡ TL;DR / The Vibe Check</strong>
+            Science communication isn't about reading a 40-page peer-reviewed PDF with a boring monotone voice. It’s taking raw, cutting-edge data from lab benches and translating it into stories, graphics, and short-form videos that normal humans actually care about—without lying, dumbing it down, or hyping up fake cures. In the age of the algorithm, if science doesn't capture attention, misinformation will.
+        </div>
+
+        <h3>The Formal Definition and the Modern Reality</h3>
+        <p><strong>Science Communication (SciComm)</strong> encompasses the practice of informing, educating, raising awareness, and inspiring dialogue around science-related topics among non-expert audiences. It acts as the critical, load-bearing bridge between academic research institutions and the global public.</p>
+
+        <p>Historically, this discipline was treated as a linear, one-way street. Scientists discovered facts in isolated laboratories, published papers in paywalled journals, and occasionally issued heavily sanitized press releases to traditional media outlets. Science was something that was handed <em>down</em> to the public from atop an ivory tower.</p>
+
+        <p>However, in our modern hyper-connected, decentralized ecosystem, science happens in public. From viral TikTok health trends and algorithmic echo chambers to highly polarized climate change debates, the public's understanding of science directly dictates public policy, healthcare outcomes, and technological innovation. SciComm is no longer just a "nice-to-have" PR function for universities; it is the frontline of defending empirical reality.</p>
+
+        <h3>The Two Hemispheres of SciComm</h3>
+        <p>To be an effective communicator, you must first understand your audience. SciComm is generally split into two distinct hemispheres:</p>
+        
+        <div class="grid-2">
+            <div class="info-card">
+                <h4>🔬 Inward SciComm (Inreach)</h4>
+                <p>Communication between experts. It involves researchers speaking to other researchers, cross-disciplinary collaborations, grant proposals, and peer-reviewed journals.</p>
+                <p><strong>The Language:</strong> Highly technical jargon, statistical confidence intervals, precise methodological descriptions, and formal academic formatting.</p>
+                <p><strong>The Goal:</strong> To advance the scientific frontier, invite peer critique, and establish empirical consensus.</p>
+            </div>
+            <div class="info-card">
+                <h4>🌐 Outward SciComm (Outreach)</h4>
+                <p>Public-facing engagement involving journalists, digital creators, museum curators, policymakers, and community advocates speaking to laypeople.</p>
+                <p><strong>The Language:</strong> Narrative storytelling, relatable analogies, visual infographics, emotional hooks, and real-world impact.</p>
+                <p><strong>The Goal:</strong> To build scientific literacy, inspire wonder, inform public policy, and combat dangerous misinformation.</p>
+            </div>
+        </div>
+
+        <h3>The Deep Dive: Why the Stakes Have Never Been Higher</h3>
+        <p>In previous decades, if a scientific discovery was poorly communicated, it might just mean a boring segment on the evening news or a low turnout at a museum exhibit. Today, the consequences of poor SciComm are immediate, systemic, and sometimes lethal.</p>
+        <ol>
+            <li><strong>The Democratic Imperative:</strong> We are living in a scientifically complex era where voters are asked to make decisions on incredibly dense topics: regulating Artificial Intelligence, funding mRNA technology, managing municipal water systems, and transitioning to renewable energy grids. If the public does not fundamentally understand the science behind these issues, they cannot vote in their own best interests. They become susceptible to lobbyists and demagogues who manipulate scientific data for political gain.</li>
+            <li><strong>Economic and Institutional Survival:</strong> Pure scientific research requires monumental funding, much of which comes from taxpayer dollars via government grants (e.g., NASA, the NIH, the NSF). If the public does not perceive the value of the James Webb Space Telescope or CRISPR gene-editing research, political pressure will inevitably cause that funding to dry up. Outward SciComm ensures the public remains invested in the scientific endeavor.</li>
+            <li><strong>Personal and Public Health:</strong> On a micro level, SciComm dictates human survival. During public health crises, the clarity of a message regarding transmission vectors, vaccine efficacy, or quarantine protocols directly correlates with mortality rates. When institutions fail to communicate clearly, individuals make decisions based on fear.</li>
+        </ol>
+
+        <h3>The Gen Z Shift: The Decentralization of Trust</h3>
+        <p>We are currently navigating the <strong>Attention Economy</strong>, a digital landscape where algorithms inherently prioritize sensationalism, outrage, and novelty over nuance and accuracy. When scientific experts fail to fill the digital information void with accessible, engaging content, malicious actors—such as pseudoscientific wellness influencers, anti-vaccine grifters, and climate denialists—gladly fill it.</p>
+        
+        <p>Furthermore, Gen Z is experiencing a massive, documented shift in societal trust. Institutional trust (unwavering faith in massive governments, massive corporations, and legacy universities) is at an all-time low. Trust is no longer centralized; it is decentralized and placed in <em>individuals, parasocial relationships, and authentic creators</em>.</p>
+        
+        <p>This means a modern science communicator cannot rely simply on a "Ph.D." in their bio to command respect. The "Voice of God" broadcasting tone is dead. Modern SciComm must earn attention and trust through <strong>authenticity and vulnerability</strong>. The most successful modern science communicators (like Hank Green or Raven the Science Maven) openly admit when the science is unsettled, show the messy process of failed experiments, and invite their audience to participate in the journey of discovery, rather than just lecturing them on the final results.</p>
+
+        <h2>Module 1.2: The Deficit Model vs. Engagement Models</h2>
+        <p>To understand how to communicate effectively, we must first unlearn the biggest, most persistent mistake in scientific history. For over a century, STEM fields were dominated by a psychological framework known as the <strong>Information Deficit Model</strong>.</p>
+        
+        <h3>The Anatomy of the Deficit Model</h3>
+        <p>The Deficit Model operates on a remarkably simple, yet fundamentally flawed, assumption: <em>"The public is a rational but empty vessel. If a person does not agree with the scientific consensus (e.g., they fear genetically modified organisms or deny global warming), it is simply because they suffer from a 'deficit' of facts. Therefore, if I just pour more data, more statistics, and more facts into their brain, they will logically change their mind."</em></p>
+        <p>Why do scientists default to this model? Because it mirrors the academic peer-review process. If a scientist submits a paper and a reviewer disagrees with the conclusion, the scientist runs more tests and provides more data until the reviewer is convinced. However, the general public does not process information like a peer reviewer.</p>
+        <p>When applied to the public, the Deficit Model results in a "top-down" broadcasting style. Scientists act as the elite gatekeepers of knowledge, speaking <em>at</em> a passive audience. When the audience inevitably rejects the message, the scientist becomes frustrated, assuming the public is simply "anti-science" or ignorant.</p>
+
+        <h3>The Psychological Barrier: Identity-Protective Cognition</h3>
+        <p>The Deficit Model fails because it ignores the complexities of human cognitive psychology. Human beings are not strictly rational calculating machines; we are deeply emotional, social creatures whose beliefs are tied to our tribal identities.</p>
+        <p>When you present a layperson with facts that contradict a belief deeply tied to their identity, political affiliation, or religion, their brain physically reacts. Neuroimaging studies show that when core beliefs are challenged, the brain's amygdala (the emotional threat-response center) lights up. The brain treats contradictory data not as an opportunity to learn, but as a <em>literal, physical threat</em> to its survival.</p>
+        <p>This triggers a psychological defense mechanism called <strong>Identity-Protective Cognition</strong>. Instead of calmly accepting the new data, the brain goes into overdrive to invent rationalizations to dismiss the facts, discredit the messenger, or find tiny flaws in the data.</p>
+        <p>This ultimately leads to the <strong>Backfire Effect</strong>. When people are confronted with evidence that clashes with their deeply held worldview, the cognitive dissonance is so uncomfortable that they actually double down on their original stance. By giving them "more facts" (the Deficit Model), you have inadvertently made them <em>more</em> entrenched in their incorrect belief.</p>
+
+        <h3>The Paradigm Shift: The Engagement Model (PEST)</h3>
+        <p>Recognizing the catastrophic failure of the Deficit Model, modern SciComm has shifted to the <strong>Public Engagement with Science and Technology (PEST)</strong> framework.</p>
+        <p>The Engagement Model views communication not as a lecture, but as a horizontal, two-way street. It acknowledges a vital truth: while the public may not have PhDs in epidemiology or climatology, they bring valid lived experiences, distinct cultural contexts, and legitimate ethical concerns to the table.</p>
+
+        <strong>Core Tenets of the Engagement Model:</strong>
+        <ol>
+            <li><strong>Active Listening & Empathy:</strong> Before presenting data, the communicator must listen to the audience's fears and validate their emotions. You cannot bypass a person's amygdala without establishing psychological safety.</li>
+            <li><strong>Co-Production of Knowledge:</strong> Science is framed as a collaborative effort. Citizen science initiatives (where the public helps track bird migrations or monitor local water quality) are prime examples. When the public participates in the data collection, they trust the data.</li>
+            <li><strong>Meeting People Where They Are:</strong> Instead of demanding the public come to a university lecture hall, scientists go to community centers, host Reddit AMAs, or create TikToks that respect the cultural vernacular of the platform.</li>
+        </ol>
+
+        <table>
+            <tr>
+                <th>Component</th>
+                <th>The Deficit Model (Outdated)</th>
+                <th>The Engagement Model (Modern)</th>
+            </tr>
+            <tr>
+                <td><strong>Core Assumption</strong></td>
+                <td>Public is ignorant; science is supreme.</td>
+                <td>Public has valid concerns; science is collaborative.</td>
+            </tr>
+            <tr>
+                <td><strong>Direction of Info</strong></td>
+                <td>Top-down broadcasting (Monologue).</td>
+                <td>Horizontal, interactive dialogue.</td>
+            </tr>
+            <tr>
+                <td><strong>Role of Emotion</strong></td>
+                <td>Ignored; strictly "facts over feelings."</td>
+                <td>Validated; used to build trust and connection.</td>
+            </tr>
+            <tr>
+                <td><strong>Ultimate Goal</strong></td>
+                <td>Persuasion and compliance.</td>
+                <td>Mutual learning and trust-building.</td>
+            </tr>
+        </table>
+
+        <h2>Module 1.3: Visual Analytics & Gen Z "Scrollytelling"</h2>
+        <p>In the digital landscape, attention is the scarcest and most fiercely contested resource on the planet. You have roughly 1.5 to 3 seconds to capture a user's attention as they scroll through an infinite feed. If your data visualization looks like an Excel spreadsheet exported from a 1998 server, you have lost the war for attention before the user has even processed your title.</p>
+        <p>To communicate science effectively to Gen Z, we must master Visual Analytics—the intersection of data science, graphic design, and human-computer interaction.</p>
+
+        <h3>Adapting Tufte for the TikTok Generation</h3>
+        <p>Edward Tufte, a pioneer in the field of data visualization, introduced a foundational concept known as the <strong>Data-Ink Ratio</strong>. Tufte argued that every drop of "ink" (or every illuminated pixel on a screen) should represent actual, meaningful data. Anything else is what he called <strong>Chartjunk</strong>.</p>
+        <p>In academic publishing, a densely packed graph with multiple trend lines, thick grid networks, complex legends, and heavy borders is standard. But on a 6-inch mobile screen, Chartjunk is lethal. It introduces massive <strong>Extraneous Cognitive Load</strong>—meaning the user's brain has to burn valuable energy just trying to figure out <em>how</em> to read the graph, rather than absorbing the scientific narrative.</p>
+        
+        <ul>
+            <li><strong>Remove the Gridlines:</strong> Unless precise micro-measurements are required, faint or non-existent gridlines allow the data shape to stand out.</li>
+            <li><strong>Direct Labeling:</strong> Forcing a user's eyes to dart back and forth between a color-coded legend at the bottom and a spaghetti-mess of lines in the center causes cognitive fatigue. Label your lines directly on the graph.</li>
+            <li><strong>Intentional Color Theory (Pre-attentive Processing):</strong> The human brain processes color in milliseconds, long before it processes text. Stop using default multi-color software palettes. Use a muted, neutral background color (like soft gray) for the baseline or contextual data, and use exactly <em>one</em> bold, high-contrast accent color (like neon orange or electric blue) to highlight the specific trend line you want the audience to focus on. If everything is highlighted, nothing is highlighted.</li>
+        </ul>
+
+        <!-- FIXED INTERACTIVE SANDBOX -->
+        <div class="sandbox-container">
+            <h3>Interactive Sandbox: The Impact of Chartjunk</h3>
+            <p>Click the button below to toggle between a "Deficit Model" cluttered chart and a Gen Z-optimized clean chart.</p>
+            
+            <!-- Cluttered State Container -->
+            <div id="stateCluttered" class="chart-box state-cluttered">
+                <div class="overlay-text-cluttered">
+                    💥 EXTREME DATA OVERLOAD 📊<br>Gridlines! 3D Borders! Clashing Colors! High Cognitive Load!
+                </div>
+                <div class="bar" style="height: 40%; background-color: #48bb78;"></div>
+                <div class="bar" style="height: 65%; background-color: #9f7aea;"></div>
+                <div class="bar" style="height: 30%; background-color: #ecc94b;"></div>
+                <div class="bar" style="height: 80%; background-color: #f56565;"></div>
+            </div>
+
+            <!-- Clean State Container -->
+            <div id="stateClean" class="chart-box state-clean">
+                <div class="overlay-text-clean">
+                    📈 Clean Baseline + One Highlight Color. High Data-Ink Ratio.
+                </div>
+                <div class="bar" style="height: 40%;"></div>
+                <div class="bar" style="height: 65%;"></div>
+                <div class="bar" style="height: 30%;"></div>
+                <div class="bar highlight" style="height: 80%;"></div>
+            </div>
+
+            <button id="toggleBtn" class="toggle-btn" onclick="toggleSandbox()">Switch to Clean Chart</button>
+        </div>
+
+        <h3>The Architecture of Scrollytelling</h3>
+        <p>Traditional data visualization asks the user to digest a massive, complex image all at once. <strong>Scrollytelling</strong> (a portmanteau of "scrolling" and "storytelling") revolutionizes this by pacing the delivery of information.</p>
+        <p>Popularized by digital outlets like <em>The New York Times</em> and <em>The Pudding</em>, Scrollytelling turns the user's scrolling action into the trigger for animations. Instead of giving them the whole graph, you build the graph piece-by-piece as they scroll down the page, transforming them from a passive viewer into an active participant driving the narrative.</p>
+        
+        <div class="grid-2">
+            <div class="info-card">
+                <h4>Step 1: The Hook (The Stop-Scroll)</h4>
+                <p>You begin with a bold, counter-intuitive statistic or a striking visual element that demands attention. (e.g., A massive, screen-filling blue wave with text: "The ocean is suffocating, and we are running out of time to help it breathe.")</p>
+            </div>
+            <div class="info-card">
+                <h4>Step 2: The Baseline Context (The Anchor)</h4>
+                <p>As the user scrolls down, a blank graph appears. The X and Y axes animate into place. You establish the "normal" state of affairs. (e.g., Showing ocean oxygen levels from 1900 to 1980 in a calm, flat, gray line). The user is oriented without feeling overwhelmed.</p>
+            </div>
+            <div class="info-card">
+                <h4>Step 3: The Reveal (The Plot Twist)</h4>
+                <p>The user scrolls further, and the data begins to animate rapidly. The line suddenly plummets, turning a harsh red as it crosses into the 2000s. Text bubbles pop up explaining <em>why</em> this drop is happening. The scientific breakthrough or the crisis is revealed dynamically, creating an emotional "aha!" moment.</p>
+            </div>
+            <div class="info-card">
+                <h4>Step 4: The Resolution & CTA</h4>
+                <p>Scrollytelling should never leave the audience in a state of hopeless doom. The final scroll transitions the visualization into a solution space. What is the path forward? What is the scientific community doing? Provide a clear, actionable step for the user.</p>
+            </div>
+        </div>
+
+        <h2>Module 1.4: Misinformation, Framing & Cognitive Biases</h2>
+        <p>We are currently navigating an era researchers have dubbed the <strong>Information Disorder Syndrome</strong>. The democratization of media means anyone can publish anything, and algorithms amplify whatever generates the highest emotional engagement—which is almost always outrage and fear. To fight back, a modern science communicator must act as part researcher, part cognitive psychologist, and part digital strategist.</p>
+
+        <h3>The Taxonomy of Falsehoods</h3>
+        <p>To combat falsehoods, you must first classify the threat. We break down the Information Disorder Syndrome into three distinct categories based on <em>intent</em>:</p>
+        <ul>
+            <li><strong>Misinformation:</strong> False information shared by individuals who genuinely believe it is true. There is no malicious intent. (e.g., Your well-meaning uncle sharing a Facebook post about a "secret garlic cure" for a virus).</li>
+            <li><strong>Disinformation:</strong> False information created and spread <em>deliberately</em> to deceive, confuse, or manipulate. This is highly coordinated and often driven by financial or political motives. (e.g., A troll farm generating thousands of fake bot accounts to spread lies about renewable energy failures, or a wellness influencer intentionally lying about the toxicity of sunscreen to sell their own organic brand).</li>
+            <li><strong>Malinformation:</strong> Genuine, factual information that is weaponized and shared out of context with the intent to cause harm. (e.g., Leaking the private home address of a controversial climate researcher).</li>
+        </ul>
+
+        <h3>Framing Theory and Prospect Theory</h3>
+        <p>Even when sharing absolute, undeniable facts, <em>how</em> you say it dictates how the public reacts. Behavioral economists Daniel Kahneman and Amos Tversky proved through <strong>Prospect Theory</strong> that humans are inherently irrational decision-makers based entirely on how choices are <em>framed</em>.</p>
+        <p>We are deeply driven by <strong>Loss Aversion</strong>—the psychological phenomenon where the pain of losing something feels roughly twice as powerful as the pleasure of gaining that exact same thing.</p>
+        <ul>
+            <li><strong>The Loss Frame:</strong> If you communicate climate science entirely through a Loss Frame ("If we don't drastically cut emissions, we will lose 40% of our coastal cities and millions will die"), you trigger massive anxiety. While this grabs attention, psychological studies show that prolonged exposure to doom triggers "eco-paralysis"—the public feels so helpless they simply tune the science out.</li>
+            <li><strong>The Gain Frame:</strong> If you communicate the exact same scientific necessity through a Gain Frame ("Transitioning to renewable grids gives us the opportunity to create 2 million high-paying jobs, purify our urban air, and secure a sustainable future"), you inspire hope and civic action. Effective SciComm balances the urgency of the threat with the agency of the solution.</li>
+        </ul>
+
+        <h3>Inoculation Theory (Prebunking)</h3>
+        <p>You cannot simply fact-check a lie after it has gone viral; the algorithmic damage is already done. Instead, modern SciComm utilizes <strong>Inoculation Theory</strong>, also known as <strong>Prebunking</strong>.</p>
+        <p>Just as a biological vaccine injects a weakened version of a virus into the body so the immune system can build antibodies, Prebunking injects a weakened version of a common myth into the public's feed, followed immediately by the logical breakdown of <em>why</em> it's a manipulation tactic. This trains the public's "psychological immune system" to recognize and reject the disinformation when they inevitably encounter it in the wild.</p>
+
+        <h3>The Truth Sandwich</h3>
+        <p>When you must directly confront existing misinformation, you must do so without accidentally making the lie more memorable. The human brain suffers from the <strong>Illusory Truth Effect</strong>—if we hear a lie repeated enough times, our brain mistakes that familiarity for truth. If you start your debunking video by saying the lie out loud, the viewer might only remember the lie.</p>
+        <p>To dismantle misinformation safely, we use cognitive linguist George Lakoff's <strong>Truth Sandwich</strong>:</p>
+        
+        <div class="info-card" style="border-left: 5px solid #38b2ac; margin-bottom: 20px;">
+            <h4>1. The Top Bun (Lead with the Unshakeable Truth)</h4>
+            <p>Always start with the factual reality. Frame it clearly and positively. Provide a "cognitive wedge"—a correct mental model that occupies the space in the brain before the lie can take root.</p>
+            <p><em>Example:</em> "Global satellite data consistently shows our planet is warming at an unprecedented rate, largely due to human carbon emissions trapping heat in the atmosphere."</p>
+            
+            <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 15px 0;">
+            
+            <h4>2. The Meat (Briefly Name the Lie)</h4>
+            <p>Acknowledge the specific myth so the audience knows what you are addressing, but keep it brief. Warn them that it is a manipulation.</p>
+            <p><em>Example:</em> "Recently, a highly realistic AI deepfake video has been circulating online, falsely depicting a leading scientist claiming that global warming is a hoax invented for grant money."</p>
+            
+            <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 15px 0;">
+            
+            <h4>3. The Bottom Bun (Reiterate Truth + Expose Motive)</h4>
+            <p>Return immediately to the facts, but take it a step further by exposing the <em>motive</em> behind the lie. When people understand the mechanics of how they are being tricked, they feel empowered rather than foolish.</p>
+            <p><em>Example:</em> "This video is synthetic media created by lobbying groups designed to deliberately confuse voters and protect fossil-fuel profits. The real scientist has publicly denounced the deepfake, and the actual climate data remains undisputed and accessible for anyone to review."</p>
+        </div>
+
+        <h2>Media Augmentation: Essential Viewing</h2>
+        <div class="video-card">
+            <a href="http://www.youtube.com/watch?v=rXqLHc5ZbbM" target="_blank">📺 Communicating Science | Sheril Kirshenbaum (TEDx)</a>
+            <p>A phenomenal breakdown of why facts alone don't change minds. <em>Viewing Prompt: Note how she describes the failure of the deficit model in historical science communication.</em></p>
+        </div>
+        <div class="video-card">
+            <a href="http://www.youtube.com/watch?v=7Rt8sgt7gNE" target="_blank">📺 Science communications matters | Jo Filshie Browning (TEDx)</a>
+            <p>Focuses on the real-world consequences of poor scientific framing. <em>Viewing Prompt: Pay attention to the distinction between accurate facts and accurate framing.</em></p>
+        </div>
+
+        <!-- INTERACTIVE QUIZ SECTION -->
+        <div class="quiz-section">
+            <h2 style="margin-top: 0; color: var(--accent-color);">Interactive Assessment Suite</h2>
+            <p>Test your knowledge. Click "Reveal Answer" to check your understanding.</p>
+            
+            <h3>Part 1: 20-Item HOTS Self-Assessment (Higher-Order Thinking)</h3>
+            <p><em>Focuses on Application, Analysis, and Synthesis.</em></p>
+            
+            <div class="question-block">
+                <div class="question-text">1. A scientist posts a 50-page PDF proving climate change is real, but gets angry when the public ignores it. What model are they relying on?</div>
+                <div class="options-list">A) Engagement Model | B) Deficit Model | C) Framing Theory | D) Scrollytelling</div>
+                <button class="reveal-btn" onclick="reveal(this)">Reveal Answer</button>
+                <div class="answer-box"><strong>Answer: B.</strong> Rationale: They assume a lack of information is the only barrier, ignoring format and audience context.</div>
+            </div>
+            <div class="question-block">
+                <div class="question-text">2. To debunk a myth that 5G causes viruses, which is the best "Top Bun" of a Truth Sandwich?</div>
+                <div class="options-list">A) "5G does not cause viruses." | B) "Viruses are biological entities, while 5G is a radio wave." | C) "You might have heard 5G causes illness." | D) "People selling EMF blockers are lying to you."</div>
+                <button class="reveal-btn" onclick="reveal(this)">Reveal Answer</button>
+                <div class="answer-box"><strong>Answer: B.</strong> Rationale: It establishes the factual baseline first before addressing the myth.</div>
+            </div>
+            <div class="question-block">
+                <div class="question-text">3. If an infographic is designed with a Loss Frame, what emotion is it primarily trying to leverage?</div>
+                <div class="options-list">A) Hope | B) Apathy | C) Fear/Urgency | D) Curiosity</div>
+                <button class="reveal-btn" onclick="reveal(this)">Reveal Answer</button>
+                <div class="answer-box"><strong>Answer: C.</strong> Rationale: Loss frames highlight what will be destroyed or lost, triggering urgency.</div>
+            </div>
+            <div class="question-block">
+                <div class="question-text">4. Why is the "Backfire Effect" dangerous for SciComm?</div>
+                <div class="options-list">A) It makes algorithms block content. | B) It causes audiences to strengthen their incorrect beliefs when shown contrary facts. | C) It deletes data. | D) It makes scientists defensive.</div>
+                <button class="reveal-btn" onclick="reveal(this)">Reveal Answer</button>
+                <div class="answer-box"><strong>Answer: B.</strong> Rationale: Direct contradiction of deeply held beliefs triggers identity-protective cognition and cognitive dissonance.</div>
+            </div>
+            <div class="question-block">
+                <div class="question-text">5. Which scenario best represents "Lateral Reading"?</div>
+                <div class="options-list">A) Reading a science article from top to bottom. | B) Opening new tabs to verify a creator's credentials and claims on other sites. | C) Reading only the headlines. | D) Scrolling through TikTok comments.</div>
+                <button class="reveal-btn" onclick="reveal(this)">Reveal Answer</button>
+                <div class="answer-box"><strong>Answer: B.</strong> Rationale: Fact-checkers verify by looking across the web, not just relying on the source itself.</div>
+            </div>
+            <div class="question-block">
+                <div class="question-text">6. A user believes astrology is a hard science. They only follow astrologers on Twitter. This is an example of:</div>
+                <div class="options-list">A) Disinformation | B) The Deficit Model | C) Confirmation Bias via an echo chamber | D) Gain Framing</div>
+                <button class="reveal-btn" onclick="reveal(this)">Reveal Answer</button>
+                <div class="answer-box"><strong>Answer: C.</strong> Rationale: They curate their feed to only confirm pre-existing beliefs.</div>
+            </div>
+            <div class="question-block">
+                <div class="question-text">7. When designing data visualizations for mobile, Edward Tufte's principle of minimizing "chartjunk" translates to:</div>
+                <div class="options-list">A) Adding more gridlines. | B) Using 3D exploding pie charts. | C) Stripping away non-essential elements to lower extraneous cognitive load. | D) Using dense academic language.</div>
+                <button class="reveal-btn" onclick="reveal(this)">Reveal Answer</button>
+                <div class="answer-box"><strong>Answer: C.</strong> Rationale: Mobile screens demand instant clarity and minimal distractions to maximize the Data-Ink ratio.</div>
+            </div>
+            <div class="question-block">
+                <div class="question-text">8. What is the crucial first step before applying the Truth Sandwich to a highly sensitive topic (like vaccines)?</div>
+                <div class="options-list">A) Cite a peer-reviewed paper | B) Validate the audience's underlying emotion/fear | C) State the myth loudly | D) End the conversation</div>
+                <button class="reveal-btn" onclick="reveal(this)">Reveal Answer</button>
+                <div class="answer-box"><strong>Answer: B.</strong> Rationale: Empathy lowers defensive shields, preventing the backfire effect.</div>
+            </div>
+            <div class="question-block">
+                <div class="question-text">9. How does "Scrollytelling" improve data retention?</div>
+                <div class="options-list">A) By forcing users to read long paragraphs. | B) By pacing the release of information contextually as the user interacts. | C) By eliminating all text. | D) By using VR headsets.</div>
+                <button class="reveal-btn" onclick="reveal(this)">Reveal Answer</button>
+                <div class="answer-box"><strong>Answer: B.</strong> Rationale: It breaks complex data into bite-sized, chronological reveals.</div>
+            </div>
+            <div class="question-block">
+                <div class="question-text">10. A politician shares a fake graph about wind turbines causing blackouts because they financially benefit from oil. This is:</div>
+                <div class="options-list">A) Misinformation | B) Disinformation | C) The Engagement Model | D) Scrollytelling</div>
+                <button class="reveal-btn" onclick="reveal(this)">Reveal Answer</button>
+                <div class="answer-box"><strong>Answer: B.</strong> Rationale: It is deliberately false information spread for financial/political gain.</div>
+            </div>
+            <div class="question-block">
+                <div class="question-text">11. Which analogy best explains the role of mRNA in vaccines to a layperson?</div>
+                <div class="options-list">A) A genetic rewrite | B) A permanent cellular change | C) A temporary Snapchat message with instructions | D) A live virus infection</div>
+                <button class="reveal-btn" onclick="reveal(this)">Reveal Answer</button>
+                <div class="answer-box"><strong>Answer: C.</strong> Rationale: It accurately portrays the temporary, instructional nature of the molecule.</div>
+            </div>
+            <div class="question-block">
+                <div class="question-text">12. What is the primary flaw of telling an audience, "You are wrong to believe that"?</div>
+                <div class="options-list">A) It takes too long. | B) It attacks their identity, triggering a biological threat response. | C) It uses too much jargon. | D) It is a gain frame.</div>
+                <button class="reveal-btn" onclick="reveal(this)">Reveal Answer</button>
+                <div class="answer-box"><strong>Answer: B.</strong> Rationale: Identity attacks shut down the logical centers of the brain via Identity-Protective Cognition.</div>
+            </div>
+            <div class="question-block">
+                <div class="question-text">13. In the Engagement Model (PEST), the public is viewed as:</div>
+                <div class="options-list">A) Empty vessels | B) Passive consumers | C) Active stakeholders with valid cultural contexts | D) An obstacle</div>
+                <button class="reveal-btn" onclick="reveal(this)">Reveal Answer</button>
+                <div class="answer-box"><strong>Answer: C.</strong> Rationale: Engagement requires two-way, respectful dialogue and co-production of knowledge.</div>
+            </div>
+            <div class="question-block">
+                <div class="question-text">14. A creator uses bright neon green for all lines on a multi-variable line chart. What mobile design rule did they break?</div>
+                <div class="options-list">A) Intentional Color Theory | B) The Deficit Model | C) Lateral reading | D) Framing</div>
+                <button class="reveal-btn" onclick="reveal(this)">Reveal Answer</button>
+                <div class="answer-box"><strong>Answer: A.</strong> Rationale: If every line uses a highlight color, the viewer doesn't know where to look. Baseline data should be muted.</div>
+            </div>
+            <div class="question-block">
+                <div class="question-text">15. Why should the "Lie" be kept brief in the middle of a Truth Sandwich?</div>
+                <div class="options-list">A) Because lies are boring. | B) To prevent the myth from becoming the most memorable part of the message. | C) Because scientists don't like talking about them. | D) To save character count.</div>
+                <button class="reveal-btn" onclick="reveal(this)">Reveal Answer</button>
+                <div class="answer-box"><strong>Answer: B.</strong> Rationale: Repetition creates familiarity, which the brain mistakes for truth (the illusory truth effect).</div>
+            </div>
+            <div class="question-block">
+                <div class="question-text">16. "If you adopt a plant-based diet, you increase your chances of living past 80 by 20%." This is an example of:</div>
+                <div class="options-list">A) Loss Frame | B) Gain Frame | C) Disinformation | D) Deficit Model</div>
+                <button class="reveal-btn" onclick="reveal(this)">Reveal Answer</button>
+                <div class="answer-box"><strong>Answer: B.</strong> Rationale: It focuses on the positive outcome (living longer) rather than the negative, utilizing Prospect Theory.</div>
+            </div>
+            <div class="question-block">
+                <div class="question-text">17. Which is an example of "Authenticity over Authority" in Gen Z SciComm?</div>
+                <div class="options-list">A) A scientist wearing a lab coat standing behind a podium. | B) A researcher vlogging their failed experiment and explaining what they learned. | C) A press release from a university. | D) A 300-page textbook.</div>
+                <button class="reveal-btn" onclick="reveal(this)">Reveal Answer</button>
+                <div class="answer-box"><strong>Answer: B.</strong> Rationale: Showing vulnerability and the messy process of science builds genuine, decentralized trust.</div>
+            </div>
+            <div class="question-block">
+                <div class="question-text">18. Why are the liver and kidneys mentioned in the "Detox" Truth Sandwich?</div>
+                <div class="options-list">A) To sell organ supplements. | B) To provide the factual, physiological baseline that replaces the need for the myth. | C) To scare the reader. | D) They aren't mentioned.</div>
+                <button class="reveal-btn" onclick="reveal(this)">Reveal Answer</button>
+                <div class="answer-box"><strong>Answer: B.</strong> Rationale: It fills the knowledge gap with real science before addressing the juice cleanse myth.</div>
+            </div>
+            <div class="question-block">
+                <div class="question-text">19. What is the ultimate goal of SciComm in a democratic society?</div>
+                <div class="options-list">A) To make everyone a scientist. | B) To help citizens make informed decisions for their well-being and governance. | C) To win arguments on Twitter. | D) To sell technology.</div>
+                <button class="reveal-btn" onclick="reveal(this)">Reveal Answer</button>
+                <div class="answer-box"><strong>Answer: B.</strong> Rationale: SciComm empowers public agency and informed voting.</div>
+            </div>
+            <div class="question-block">
+                <div class="question-text">20. A researcher holds a town hall where citizens share their fears about a local chemical plant, and the researcher adjusts their study based on this feedback. This is:</div>
+                <div class="options-list">A) Deficit Model | B) Co-production/Engagement Model | C) Misinformation | D) Chartjunk</div>
+                <button class="reveal-btn" onclick="reveal(this)">Reveal Answer</button>
+                <div class="answer-box"><strong>Answer: B.</strong> Rationale: It is a two-way dialogue where public input shapes the scientific process.</div>
+            </div>
+
+            <br>
+            <h3>Part 2: 20-Item Reinforcement Exercise</h3>
+            <p><em>Focuses on Core Concepts and Definitions.</em></p>
+            
+            <div class="question-block"><div class="question-text">1. What does SciComm stand for?</div><button class="reveal-btn" onclick="reveal(this)">Reveal Answer</button><div class="answer-box"><strong>Answer: Science Communication.</strong> Rationale: Standard industry abbreviation.</div></div>
+            <div class="question-block"><div class="question-text">2. True or False: The Deficit Model is considered the best modern practice.</div><button class="reveal-btn" onclick="reveal(this)">Reveal Answer</button><div class="answer-box"><strong>Answer: False.</strong> Rationale: It is outdated; engagement models are preferred.</div></div>
+            <div class="question-block"><div class="question-text">3. What model assumes the public lacks facts?</div><button class="reveal-btn" onclick="reveal(this)">Reveal Answer</button><div class="answer-box"><strong>Answer: The Information Deficit Model.</strong> Rationale: It views audiences as empty vessels.</div></div>
+            <div class="question-block"><div class="question-text">4. What model prioritizes two-way conversation?</div><button class="reveal-btn" onclick="reveal(this)">Reveal Answer</button><div class="answer-box"><strong>Answer: The Engagement Model (PEST).</strong> Rationale: Focuses on dialogue and listening.</div></div>
+            <div class="question-block"><div class="question-text">5. Information shared mistakenly without malicious intent is:</div><button class="reveal-btn" onclick="reveal(this)">Reveal Answer</button><div class="answer-box"><strong>Answer: Misinformation.</strong> Rationale: Intent is what separates it from disinformation.</div></div>
+            <div class="question-block"><div class="question-text">6. Information shared deliberately to deceive is:</div><button class="reveal-btn" onclick="reveal(this)">Reveal Answer</button><div class="answer-box"><strong>Answer: Disinformation.</strong> Rationale: The presence of malicious intent.</div></div>
+            <div class="question-block"><div class="question-text">7. What bias makes us seek out data that supports our existing views?</div><button class="reveal-btn" onclick="reveal(this)">Reveal Answer</button><div class="answer-box"><strong>Answer: Confirmation Bias.</strong> Rationale: We favor what we already believe.</div></div>
+            <div class="question-block"><div class="question-text">8. Who created the concept of the Truth Sandwich?</div><button class="reveal-btn" onclick="reveal(this)">Reveal Answer</button><div class="answer-box"><strong>Answer: George Lakoff.</strong> Rationale: He is a cognitive linguist who formulated this structure.</div></div>
+            <div class="question-block"><div class="question-text">9. What is the first layer of the Truth Sandwich?</div><button class="reveal-btn" onclick="reveal(this)">Reveal Answer</button><div class="answer-box"><strong>Answer: The Truth/Fact (Top Bun).</strong> Rationale: You must establish reality first.</div></div>
+            <div class="question-block"><div class="question-text">10. What is the middle layer of the Truth Sandwich?</div><button class="reveal-btn" onclick="reveal(this)">Reveal Answer</button><div class="answer-box"><strong>Answer: The Myth/Lie (The Meat).</strong> Rationale: Kept brief and clearly labeled as false.</div></div>
+            <div class="question-block"><div class="question-text">11. What does the bottom layer of the Truth Sandwich often expose?</div><button class="reveal-btn" onclick="reveal(this)">Reveal Answer</button><div class="answer-box"><strong>Answer: The motive or reiteration of the truth.</strong> Rationale: Explaining why the myth exists helps audience understanding.</div></div>
+            <div class="question-block"><div class="question-text">12. What storytelling technique relies on user scrolling to reveal data?</div><button class="reveal-btn" onclick="reveal(this)">Reveal Answer</button><div class="answer-box"><strong>Answer: Scrollytelling.</strong> Rationale: Defines the modern digital narrative format.</div></div>
+            <div class="question-block"><div class="question-text">13. According to Tufte, what should you minimize in a graph?</div><button class="reveal-btn" onclick="reveal(this)">Reveal Answer</button><div class="answer-box"><strong>Answer: Extraneous Cognitive load/Chartjunk.</strong> Rationale: Clutter ruins readability and the Data-Ink ratio.</div></div>
+            <div class="question-block"><div class="question-text">14. True or False: Using highly academic jargon builds trust with Gen Z.</div><button class="reveal-btn" onclick="reveal(this)">Reveal Answer</button><div class="answer-box"><strong>Answer: False.</strong> Rationale: Authenticity, vulnerability, and accessibility build trust.</div></div>
+            <div class="question-block"><div class="question-text">15. What framework focuses on *how* a statistic is presented (e.g., loss vs. gain)?</div><button class="reveal-btn" onclick="reveal(this)">Reveal Answer</button><div class="answer-box"><strong>Answer: Framing Theory / Prospect Theory.</strong> Rationale: Framing changes emotional reception.</div></div>
+            <div class="question-block"><div class="question-text">16. What biological system makes "detox juices" redundant?</div><button class="reveal-btn" onclick="reveal(this)">Reveal Answer</button><div class="answer-box"><strong>Answer: Liver and Kidneys.</strong> Rationale: The body's natural filtration system.</div></div>
+            <div class="question-block"><div class="question-text">17. What part of the cell does an mRNA vaccine NEVER enter?</div><button class="reveal-btn" onclick="reveal(this)">Reveal Answer</button><div class="answer-box"><strong>Answer: The Nucleus.</strong> Rationale: This is where DNA is kept, preventing genetic alteration.</div></div>
+            <div class="question-block"><div class="question-text">18. What effect occurs when correcting someone makes them cling harder to their false belief?</div><button class="reveal-btn" onclick="reveal(this)">Reveal Answer</button><div class="answer-box"><strong>Answer: The Backfire Effect.</strong> Rationale: Driven by Identity-Protective Cognition and cognitive dissonance.</div></div>
+            <div class="question-block"><div class="question-text">19. What is the best way to verify a source's credibility online?</div><button class="reveal-btn" onclick="reveal(this)">Reveal Answer</button><div class="answer-box"><strong>Answer: Lateral Reading.</strong> Rationale: Cross-referencing multiple tabs/sources outside the original domain.</div></div>
+            <div class="question-block"><div class="question-text">20. True or False: Emotion has no place in effective science communication.</div><button class="reveal-btn" onclick="reveal(this)">Reveal Answer</button><div class="answer-box"><strong>Answer: False.</strong> Rationale: Validating emotion is key to bypassing defensive psychological barriers.</div></div>
+
+            <br>
+            <h3>Part 3: Essay Test (Contemporary & Future Applications)</h3>
+            <p><strong>Instructions:</strong> Answer the following prompts in 2-3 paragraphs. <br>
+            <strong>Rubric:</strong> 40% Scientific accuracy, 30% Application of course frameworks (e.g., Truth Sandwich, Engagement Model), 30% Clarity and Gen Z contextualization.</p>
+            
+            <div class="question-block">
+                <div class="question-text">Prompt 1: The Deepfake Dilemma</div>
+                <div class="options-list">You discover a viral TikTok featuring a highly realistic AI deepfake of a prominent climate scientist claiming that "global warming is a hoax created for grant money." Using the Engagement Model and the Truth Sandwich, write a script for a response video that debunks the deepfake without alienating viewers who might have fallen for it.</div>
+                <button class="reveal-btn" onclick="reveal(this)">Reveal Grading Guide</button>
+                <div class="answer-box"><em>Guide:</em> Start with empathy ("It's terrifying how real AI looks now"). Establish the truth of the scientist's actual stance (Top Bun). Name the deepfake briefly (Meat). Explain how to spot AI artifacts (the motive/mechanics) as the Bottom Bun.</div>
+            </div>
+            
+            <div class="question-block">
+                <div class="question-text">Prompt 2: Designing for the Scroll</div>
+                <div class="options-list">A local health department hires you to communicate a complex dataset regarding rising microplastic levels in the city's drinking water. They hand you a 10-page spreadsheet. Describe, step-by-step, how you would transform this data into a "Scrollytelling" experience for Instagram. What is your Hook, Context, Reveal, and CTA?</div>
+                <button class="reveal-btn" onclick="reveal(this)">Reveal Grading Guide</button>
+                <div class="answer-box"><em>Guide:</em> Focus on visual pacing and Tufte's Data-Ink ratio. The hook should be relatable (e.g., "You might be drinking a credit card's worth of plastic"). Use intentional color theory to map the baseline data cleanly before revealing the spike in plastics across sequential slides.</div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-text">Prompt 3: The Echo Chamber Exit</div>
+                <div class="options-list">Algorithms on social media naturally create echo chambers by feeding users content that aligns with their Confirmation Bias. As a future science communicator, propose a systemic strategy or content style that can successfully penetrate these echo chambers to deliver factual scientific news to audiences who are actively algorithmically insulated from it.</div>
+                <button class="reveal-btn" onclick="reveal(this)">Reveal Grading Guide</button>
+                <div class="answer-box"><em>Guide:</em> Discuss "meeting them where they are" (Engagement model), partnering with non-science influencers (authenticity/decentralized trust), utilizing Prebunking (Inoculation theory), and using non-threatening gain-framing to bypass algorithmic and psychological defenses.</div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Interactive JavaScript -->
+    <script>
+        // Reveal Answer Logic for the Quiz
+        function reveal(btn) {
+            const answerBox = btn.nextElementSibling;
+            if (answerBox.style.display === "block") {
+                answerBox.style.display = "none";
+                btn.innerText = btn.innerText.replace("Hide", "Reveal");
+            } else {
+                answerBox.style.display = "block";
+                btn.innerText = btn.innerText.replace("Reveal", "Hide");
+            }
+        }
+
+        // Fixed DOM-based Interactive Sandbox Logic
+        function toggleSandbox() {
+            const cluttered = document.getElementById("stateCluttered");
+            const clean = document.getElementById("stateClean");
+            const btn = document.getElementById("toggleBtn");
+            
+            // Check computed display style to ensure logic catches current state
+            if (window.getComputedStyle(cluttered).display !== "none") {
+                // Switch to CLEAN
+                cluttered.style.display = "none";
+                clean.style.display = "flex";
+                btn.innerText = "Switch to Cluttered Chart";
+                btn.style.backgroundColor = "#e53e3e"; // Red color to indicate moving back to bad state
+            } else {
+                // Switch to CLUTTERED
+                cluttered.style.display = "flex";
+                clean.style.display = "none";
+                btn.innerText = "Switch to Clean Chart";
+                btn.style.backgroundColor = "#ed8936"; // Orange color to indicate moving to good state
+            }
+        }
+    </script>
+</body>
+</html>
