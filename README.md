@@ -1,29 +1,58 @@
-# 🧬 Unlocking SciComm: Bridging the Gap from Lab to Feed
+# Chapter 1: Unlocking SciComm — Interactive OER
 
-A modern, interactive, and visually-driven digital textbook chapter designed to teach Science Communication (SciComm) to Gen Z learners. 
+An interactive, single-file open educational resource (OER) on **science communication** — covering the deficit vs. engagement models, visual analytics and scrollytelling, misinformation and cognitive biases, and the ethics of communicating uncertain science. Built for the *Seminar in Astronomy*.
 
-Traditional science communication relies heavily on the outdated "Information Deficit Model," dense PDFs, and academic jargon. This project reimagines SciComm education through a mobile-first, interactive lens, focusing on empathy, visual analytics, and battling the modern "Information Disorder Syndrome."
+**➡️ Live demo:** once published, your page will be at
+`https://<your-username>.github.io/<repo-name>/`
 
-## ✨ Features
-*   **Interactive "Chartjunk" Sandbox:** A DOM-manipulated interactive widget allowing students to toggle between a cluttered "Deficit Model" graph and a clean, Gen Z-optimized data visualization to understand Edward Tufte's Data-Ink Ratio.
-*   **The "Truth Sandwich" Framework:** Deep-dive case studies on how to debunk misinformation (like AI Deepfakes and Wellness Scams) without triggering the psychological Backfire Effect.
-*   **Integrated YouTube Media:** Curated TEDx masterclasses with specific viewing prompts.
-*   **43-Item Assessment Suite:** 
-    *   20 HOTS (Higher-Order Thinking Skills) multiple-choice questions.
-    *   20 Reinforcement Exercise questions.
-    *   3 Future-focused essay prompts with grading rubrics.
-    *   *Includes an interactive "Reveal Answer" toggle for frictionless self-assessment.*
+## Features
 
-## 🚀 How to Use
-This project is entirely vanilla HTML, CSS, and JavaScript. There are no build tools or dependencies required.
+- **Five modules** of expanded academic content, from "What is SciComm?" to the ethics of the astronomer's voice.
+- **Astronomy case studies** — Galaxy Zoo citizen science, JWST first-image rollout, the phosphine-on-Venus caution tale, and more.
+- **Interactive chartjunk sandbox** — toggle a cluttered chart against a clean, high data-ink-ratio version.
+- **40-item self-assessment** (HOTS + reinforcement) plus four essay prompts, with a reveal-answer tracker and Reveal All / Reset controls.
+- **Key-terms glossary** and an APA-adjacent **references** list for further reading.
+- **Reading UX:** dark/light theme toggle, scroll progress bar, sticky table of contents, back-to-top, and print-friendly styles.
+- **Zero dependencies** — pure HTML, CSS, and vanilla JavaScript in one file. No build step, no tracking, works offline.
 
-1. Clone or download this repository.
-2. Open `chapter1_science_communication_interactive_fixed.html` directly in any modern web browser (Chrome, Safari, Edge, Firefox).
+## Repository contents
 
-## 🛠️ Built With
-*   HTML5
-*   CSS3 (Custom variables, responsive grid layouts, animations)
-*   Vanilla JavaScript (DOM manipulation for interactive widgets)
+```
+index.html     The entire interactive chapter (open it directly in any browser)
+README.md      This file
+LICENSE        MIT License
+.gitignore     Common ignore rules
+```
 
-## 📄 License
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+## View locally
+
+Just open `index.html` in any modern browser — no server required. To serve it locally instead:
+
+```bash
+python3 -m http.server 8000
+# then visit http://localhost:8000
+```
+
+## Publish with GitHub Pages
+
+1. Create a new GitHub repository and push these files to the `main` branch:
+
+   ```bash
+   git init
+   git add .
+   git commit -m "Add interactive SciComm chapter"
+   git branch -M main
+   git remote add origin https://github.com/<your-username>/<repo-name>.git
+   git push -u origin main
+   ```
+
+2. In the repository, go to **Settings → Pages**.
+3. Under **Build and deployment → Source**, choose **Deploy from a branch**.
+4. Set the branch to **main** and the folder to **/ (root)**, then **Save**.
+5. Wait about a minute, then visit `https://<your-username>.github.io/<repo-name>/`.
+
+Because the file is named `index.html` and sits at the repository root, GitHub Pages serves it automatically as the site's home page.
+
+## License
+
+Released under the [MIT License](LICENSE) — free to use, adapt, and share for educational purposes.
